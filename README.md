@@ -1,8 +1,8 @@
 # testeSAG
 repositório criado para teste de seleção na SAG Software
 
-#Guia de instalção
-- Configurar database Oracle :
+#Guia de instalação
+- Configurar database Oracle : \n
 HostName := 'localhost'
 Port := 1521
 Database := 'XE'
