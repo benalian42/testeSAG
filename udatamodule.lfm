@@ -1,0 +1,38 @@
+object dmDados: TdmDados
+  OldCreateOrder = False
+  Height = 250
+  Width = 400
+  object ZConnectionOracle: TZConnection
+    Controls.Strings = ('protocol=oracle')
+    Port = 0
+    Protocol = 'oracle'
+    Left = 48
+    Top = 32
+  end
+  object ZQryLotes: TZQuery
+    Connection = ZConnectionOracle
+    SQL.Strings = (
+      'SELECT ID_LOTE, DESCRICAO, DATA_ENTRADA, QUANTIDADE_INICIAL '
+      'FROM TAB_LOTE_AVES '
+      'ORDER BY DATA_ENTRADA DESC')
+    Left = 144
+    Top = 32
+  end
+  object ZProcPesagem: TZStoredProc
+    Connection = ZConnectionOracle
+    StoredProcName = 'SP_INSERIR_PESAGEM'
+    Left = 48
+    Top = 96
+  end
+  object ZProcMortalidade: TZStoredProc
+    Connection = ZConnectionOracle
+    StoredProcName = 'SP_INSERIR_MORTALIDADE'
+    Left = 144
+    Top = 96
+  end
+  object ZQryAux: TZQuery
+    Connection = ZConnectionOracle
+    Left = 240
+    Top = 32
+  end
+end

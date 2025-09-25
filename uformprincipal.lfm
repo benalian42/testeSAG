@@ -1,0 +1,231 @@
+object FormPrincipal: TFormPrincipal
+  Left = 295
+  Height = 421
+  Top = 155
+  Width = 834
+  Caption = 'Controle de Lotes de Aves'
+  ClientHeight = 421
+  ClientWidth = 834
+  OnCreate = FormCreate
+  object PainelEsquerdo: TPanel
+    Left = 0
+    Height = 421
+    Top = 0
+    Width = 450
+    Align = alLeft
+    BevelOuter = bvNone
+    ClientHeight = 421
+    ClientWidth = 450
+    TabOrder = 0
+    object LabelLotes: TLabel
+      Left = 8
+      Height = 15
+      Top = 8
+      Width = 153
+      Caption = 'Lotes de Aves Cadastrados'
+      ParentColor = False
+    end
+    object DBGridLotes: TDBGrid
+      Left = 8
+      Height = 388
+      Top = 25
+      Width = 434
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      Color = clWindow
+      Columns = <
+        item
+          Title.Caption = 'ID'
+          FieldName = 'ID_LOTE'
+          Width = 50
+        end
+        item
+          Title.Caption = 'Descrição'
+          FieldName = 'DESCRICAO'
+          Width = 200
+        end
+        item
+          Title.Caption = 'Data Entrada'
+          FieldName = 'DATA_ENTRADA'
+        end
+        item
+          Title.Caption = 'Qtd. Inicial'
+          FieldName = 'QUANTIDADE_INICIAL'
+        end>
+      DataSource = dsLotes
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      TabOrder = 0
+    end
+  end
+  object PainelDireito: TPanel
+    Left = 450
+    Height = 421
+    Top = 0
+    Width = 384
+    Align = alClient
+    BevelOuter = bvNone
+    ClientHeight = 421
+    ClientWidth = 384
+    TabOrder = 1
+    object GroupBoxSaude: TGroupBox
+      Left = 8
+      Height = 75
+      Top = 8
+      Width = 368
+      Anchors = [akTop, akLeft, akRight]
+      Caption = 'Saúde do Lote Selecionado (Mortalidade)'
+      ClientHeight = 55
+      ClientWidth = 364
+      TabOrder = 0
+      object PanelIndicadorSaude: TPanel
+        Left = 8
+        Height = 39
+        Top = 8
+        Width = 348
+        Alignment = taCenter
+        Anchors = [akTop, akLeft, akRight]
+        Font.Color = clWhite
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+      end
+    end
+    object PageControlDetalhes: TPageControl
+      Left = 8
+      Height = 322
+      Top = 91
+      Width = 368
+      ActivePage = TabMortalidade
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      TabIndex = 0
+      TabOrder = 1
+      object TabPesagem: TTabSheet
+        Caption = 'Lançar Pesagem'
+        object LabelDataPesagem: TLabel
+          Left = 16
+          Height = 15
+          Top = 24
+          Width = 92
+          Caption = 'Data da Pesagem'
+          ParentColor = False
+        end
+        object dtpDataPesagem: TDateTimePicker
+          Left = 16
+          Height = 23
+          Top = 45
+          Width = 150
+          Date = 45924.6401017476
+          Time = 45924.6401017476
+          TabOrder = 0
+        end
+        object LabelPesoMedio: TLabel
+          Left = 16
+          Height = 15
+          Top = 88
+          Width = 91
+          Caption = 'Peso Médio (g)'
+          ParentColor = False
+        end
+        object sePesoMedio: TSpinEdit
+          Left = 16
+          Height = 23
+          Top = 109
+          Width = 150
+          TabOrder = 1
+        end
+        object LabelQtdPesada: TLabel
+          Left = 16
+          Height = 15
+          Top = 152
+          Width = 105
+          Caption = 'Quantidade Pesada'
+          ParentColor = False
+        end
+        object seQtdPesada: TSpinEdit
+          Left = 16
+          Height = 23
+          Top = 173
+          Width = 150
+          MaxValue = 100000
+          TabOrder = 2
+        end
+        object btnSalvarPesagem: TButton
+          Left = 16
+          Height = 25
+          Top = 224
+          Width = 150
+          Caption = 'Salvar Pesagem'
+          OnClick = btnSalvarPesagemClick
+          TabOrder = 3
+        end
+      end
+      object TabMortalidade: TTabSheet
+        Caption = 'Lançar Mortalidade'
+        object LabelDataMortalidade: TLabel
+          Left = 16
+          Height = 15
+          Top = 16
+          Width = 105
+          Caption = 'Data da Mortalidade'
+          ParentColor = False
+        end
+        object dtpDataMortalidade: TDateTimePicker
+          Left = 16
+          Height = 23
+          Top = 37
+          Width = 150
+          Date = 45924.6405234259
+          Time = 45924.6405234259
+          TabOrder = 0
+        end
+        object LabelQtdMorta: TLabel
+          Left = 192
+          Height = 15
+          Top = 16
+          Width = 99
+          Caption = 'Quantidade Morta'
+          ParentColor = False
+        end
+        object seQtdMorta: TSpinEdit
+          Left = 192
+          Height = 23
+          Top = 37
+          Width = 150
+          MaxValue = 100000
+          TabOrder = 1
+        end
+        object LabelObservacao: TLabel
+          Left = 16
+          Height = 15
+          Top = 80
+          Width = 66
+          Caption = 'Observação'
+          ParentColor = False
+        end
+        object memObservacao: TMemo
+          Left = 16
+          Height = 90
+          Top = 101
+          Width = 326
+          Lines.Strings = (
+            ''
+          )
+          TabOrder = 2
+        end
+        object btnSalvarMortalidade: TButton
+          Left = 16
+          Height = 25
+          Top = 208
+          Width = 150
+          Caption = 'Salvar Mortalidade'
+          OnClick = btnSalvarMortalidadeClick
+          TabOrder = 3
+        end
+      end
+    end
+  end
+  object dsLotes: TDataSource
+    DataSet = dmDados.ZQryLotes
+    Left = 240
+    Top = 360
+  end
+end
