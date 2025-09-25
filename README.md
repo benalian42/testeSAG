@@ -1,6 +1,15 @@
 # testeSAG
 repositório criado para teste de seleção na SAG Software
 
+#Guia de instalção
+- Configurar database Oracle :
+HostName := 'localhost'
+Port := 1521
+Database := 'XE'
+Um usuário na DB como abaixo:
+User := 'system'
+Password := 'oracle'
+
 
 Requisitos da Avaliação
 1. Estrutura do Banco de Dados (Oracle): O candidato deve criar a seguinte estrutura
