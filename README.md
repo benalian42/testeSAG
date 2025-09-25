@@ -11,6 +11,9 @@ User := 'system'
 Password := 'oracle'
 
 
+Log de construção:
+- após instalar pacote externo (lpk) para o Lazarus, não foi possível fazer ele reconhecer e utilizar a classe ZStoredProc, que está presente no pacote. Tentando reconstruir IDE para tanto.
+
 Requisitos da Avaliação
 1. Estrutura do Banco de Dados (Oracle): O candidato deve criar a seguinte estrutura
 de tabelas em um esquema Oracle:
