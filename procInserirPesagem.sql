@@ -7,7 +7,7 @@ CREATE OR REPLACE PROCEDURE SP_INSERIR_PESAGEM (
 IS
     V_QTD_INICIAL NUMBER;
 BEGIN
-    -- Validação no backend (camada extra de segurança)
+    
     SELECT QUANTIDADE_INICIAL INTO V_QTD_INICIAL
     FROM TAB_LOTE_AVES
     WHERE ID_LOTE = P_ID_LOTE_FK;
@@ -20,14 +20,10 @@ BEGIN
     INSERT INTO TAB_PESAGEM (ID_LOTE_FK, DATA_PESAGEM, PESO_MEDIO, QUANTIDADE_PESADA)
     VALUES (P_ID_LOTE_FK, P_DATA_PESAGEM, P_PESO_MEDIO, P_QUANTIDADE_PESADA);
 
-    -- Lógica extra: Não foi pedido para atualizar um campo de peso médio geral,
-    -- mas se fosse, o código viria aqui.
-    -- Ex: UPDATE TAB_LOTE_AVES SET PESO_MEDIO_GERAL = ... WHERE ID_LOTE = P_ID_LOTE_FK;
-
     COMMIT;
 EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
-        RAISE; -- Propaga o erro para a aplicação cliente (Lazarus)
+        RAISE;
 END;
 /

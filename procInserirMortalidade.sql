@@ -12,8 +12,7 @@ BEGIN
     -- Inserção dos dados
     INSERT INTO TAB_MORTALIDADE (ID_LOTE_FK, DATA_MORTALIDADE, QUANTIDADE_MORTA, OBSERVACAO)
     VALUES (P_ID_LOTE_FK, P_DATA_MORTALIDADE, P_QUANTIDADE_MORTA, P_OBSERVACAO);
-
-    -- Buscar dados para cálculo
+ 
     SELECT QUANTIDADE_INICIAL INTO V_QTD_INICIAL
     FROM TAB_LOTE_AVES
     WHERE ID_LOTE = P_ID_LOTE_FK;
@@ -21,13 +20,11 @@ BEGIN
     SELECT SUM(QUANTIDADE_MORTA) INTO V_TOTAL_MORTALIDADES
     FROM TAB_MORTALIDADE
     WHERE ID_LOTE_FK = P_ID_LOTE_FK;
-
-    -- Validação no backend (após a inserção para incluir o valor atual)
+   
     IF V_TOTAL_MORTALIDADES > V_QTD_INICIAL THEN
         RAISE_APPLICATION_ERROR(-20002, 'A soma das mortalidades ultrapassa a quantidade inicial do lote.');
     END IF;
-
-    -- Cálculo e atribuição ao parâmetro de saída
+    
     IF V_QTD_INICIAL > 0 THEN
         P_PERCENTUAL_MORTALIDADE := (V_TOTAL_MORTALIDADES / V_QTD_INICIAL) * 100;
     ELSE
